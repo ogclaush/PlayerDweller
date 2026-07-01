@@ -1,14 +1,14 @@
-# PlayerDweller
+# PlayerDweller by: ogclaush
 
-A mod that allows players to become the Cave Dweller.
+Become the Cave Dweller and hunt your friends.
 
 ## Credits
 
-This project uses the original Cave Dweller model, textures and animations from:
+PlayerDweller uses assets derived from the Better Cave Dweller project.
 
-Better Cave Dweller
-Created by Cadentem
+Original Cave Dweller:
+- Author: Cadentem
 
-This project is an unofficial fan project made for learning and content creation.
+This project includes and adapts assets distributed under the MIT License.
 
-All rights to the original assets belong to their respective author.
+See the LICENSE file for details.
