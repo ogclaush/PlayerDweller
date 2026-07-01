@@ -10,5 +10,7 @@ public class PlayerDwellerRenderer extends GeoEntityRenderer<PlayerDwellerEntity
         super(context, new PlayerDwellerModel());
 
         this.shadowRadius = 0.35F;
+
+        this.addLayer(new PlayerDwellerEyesLayer(this));
     }
 }
