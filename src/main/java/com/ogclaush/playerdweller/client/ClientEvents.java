@@ -66,10 +66,15 @@ public class ClientEvents {
 
         dweller.setDeltaMovement(player.getDeltaMovement());
 
-        double speed = player.getDeltaMovement().horizontalDistance();
+        double dx = player.getX() - player.xOld;
+        double dz = player.getZ() - player.zOld;
 
-        dweller.playerMoving = speed > 0.01D;
-        dweller.playerSprinting = player.isSprinting();
+        double speedSq = dx * dx + dz * dz;
+
+        boolean moving = speedSq > 0.0008D;
+
+        dweller.playerMoving = moving;
+        dweller.playerSprinting = player.isSprinting() && moving;
         dweller.playerCrouching = player.isCrouching();
         dweller.playerCrawling = player.isSwimming() || player.isFallFlying();
 
