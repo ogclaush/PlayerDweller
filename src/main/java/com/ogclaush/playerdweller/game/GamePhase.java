@@ -1,4 +1,8 @@
 package com.ogclaush.playerdweller.game;
 
-public class GamePhase {
+public enum GamePhase {
+    IDLE,
+    PREPARE,
+    HUNT,
+    VICTORY
 }

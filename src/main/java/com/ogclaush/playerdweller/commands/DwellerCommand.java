@@ -11,6 +11,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -43,27 +44,30 @@ public class DwellerCommand {
                 new SyncDwellerPacket(player.getUUID(), enabled)
         );
 
-        if (enabled) {
+        AttributeInstance health = player.getAttribute(Attributes.MAX_HEALTH);
+        AttributeInstance speed = player.getAttribute(Attributes.MOVEMENT_SPEED);
+        AttributeInstance damage = player.getAttribute(Attributes.ATTACK_DAMAGE);
+        AttributeInstance stepHeight = player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get());
 
-            AttributeInstance health = player.getAttribute(Attributes.MAX_HEALTH);
-            AttributeInstance speed = player.getAttribute(Attributes.MOVEMENT_SPEED);
-            AttributeInstance damage = player.getAttribute(Attributes.ATTACK_DAMAGE);
+        if (enabled) {
 
             if (health != null) health.setBaseValue(60.0D);
             if (speed != null) speed.setBaseValue(0.18D);
             if (damage != null) damage.setBaseValue(12.0D);
 
+            // Sobe blocos automaticamente, tipo cavalo.
+            if (stepHeight != null) stepHeight.setBaseValue(1.0D);
+
             player.setHealth(60.0F);
 
         } else {
 
-            AttributeInstance health = player.getAttribute(Attributes.MAX_HEALTH);
-            AttributeInstance speed = player.getAttribute(Attributes.MOVEMENT_SPEED);
-            AttributeInstance damage = player.getAttribute(Attributes.ATTACK_DAMAGE);
-
             if (health != null) health.setBaseValue(20.0D);
             if (speed != null) speed.setBaseValue(0.10D);
             if (damage != null) damage.setBaseValue(1.0D);
+
+            // Volta ao normal.
+            if (stepHeight != null) stepHeight.setBaseValue(0.0D);
 
             if (player.getHealth() > 20.0F) {
                 player.setHealth(20.0F);
